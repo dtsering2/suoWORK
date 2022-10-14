@@ -14,3 +14,5 @@ app.use(express.urlencoded())
 app.get('/', () => {
     res.send('Hello')
 })
+
+app.listen(PORT, ()=>console.log(`server is currently running on port: ${PORT}`))
