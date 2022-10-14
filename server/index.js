@@ -12,5 +12,5 @@ app.use(express.urlencoded())
 
 //routes
 app.get('/', () => {
-    res.send('Hello, world')
+    res.send('Hello')
 })
