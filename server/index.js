@@ -11,7 +11,7 @@ app.use(express.json()) //allow us to send json payloads from front to back
 app.use(express.urlencoded())
 
 //routes
-app.get('/', () => {
+app.get('/', (req, res) => {
     res.send('Hello')
 })
 
