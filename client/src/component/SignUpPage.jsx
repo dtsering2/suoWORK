@@ -3,26 +3,41 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 
 export default function SignUpPage ({navigateToLoginPage}) {
-    
-    const handleSignUp = () =>{
+    const cookies = new Cookies();
+    const initialStateSignUpCredentials = {
+        fullName: '',
+        username: '',
+        password: '',
+        confirmPassword: '',
+        phoneNumber: '',
+        avatarURL: '',
+    };
+
+    const [signUpCredentials, setSignUpCredentials] = useState(initialStateSignUpCredentials)
+
+    const handleSignUpCredentials = (e) => {
+        setSignUpCredentials({...signUpCredentials, [e.target.name]: e.target.value});
+        console.log(signUpCredentials)
+    }
+
+    const handleSignUpSubmit = async (e) =>{
+
 
     }
-    const handleChange = () => {
 
-    }
     return(
         <div className = "auth__form-container">
             <div className = "auth__form-container_fields">
                 <div className = "auth__form-container_fields-content">
-                    <p>Sign in</p>
-                    <form onSubmit = {handleSignUp}>
+                    <p>Sign Up</p>
+                    <form onSubmit = {handleSignUpSubmit}>
                         <div className = "auth__form-container_fields-content_input">
                             <label htmlFor="fullName">Full Name</label>
                             <input
                                 name = "fullName"
                                 type = "text"
                                 placeholder="Full Name"
-                                onChange={handleChange}
+                                onChange={handleSignUpCredentials}
                                 required
                             ></input>
                         </div>
@@ -32,7 +47,7 @@ export default function SignUpPage ({navigateToLoginPage}) {
                                 name = "username"
                                 type = "text"
                                 placeholder="Username"
-                                onChange={handleChange}
+                                onChange={handleSignUpCredentials}
                                 required
                             ></input>
                         </div>
@@ -40,9 +55,9 @@ export default function SignUpPage ({navigateToLoginPage}) {
                             <label htmlFor="phoneNumber">Phone Number</label>
                             <input
                                 name = "phoneNumber"
-                                type = "text"
+                                type = "number"
                                 placeholder="Phone Number"
-                                onChange={handleChange}
+                                onChange={handleSignUpCredentials}
                                 required
                             ></input>
                         </div>
@@ -50,9 +65,9 @@ export default function SignUpPage ({navigateToLoginPage}) {
                             <label htmlFor="avatarURL">Avatar URL</label>
                             <input
                                 name = "avatarURL"
-                                type = "text"
+                                type = "url"
                                 placeholder="Avatar URL"
-                                onChange={handleChange}
+                                onChange={handleSignUpCredentials}
                                 required
                             ></input>
                         </div>
@@ -62,7 +77,7 @@ export default function SignUpPage ({navigateToLoginPage}) {
                                 name = "password"
                                 type = "password"
                                 placeholder="Password"
-                                onChange={handleChange}
+                                onChange={handleSignUpCredentials}
                                 required
                             ></input>
                         </div>
@@ -72,17 +87,17 @@ export default function SignUpPage ({navigateToLoginPage}) {
                                 name = "confirmPassword"
                                 type = "password"
                                 placeholder="Confirm Password"
-                                onChange={handleChange}
+                                onChange={handleSignUpCredentials}
                                 required
                             ></input>
                         </div>
                     </form>
                     <div className="">
                         <p>
-                            Already have an account?
+                            Already have an account? {/*Need to attach a onClick event to redirect to login page */}
                         </p>
                         <span onClick = {navigateToLoginPage}>
-
+                            Sign in
                         </span>
                     </div>
                 </div>

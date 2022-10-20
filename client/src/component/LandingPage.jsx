@@ -5,7 +5,8 @@ import Cookies from 'universal-cookie';
 
 // import { ChannelListContainer, ChannelContainer, Auth } from './components';
 // import WelcomePage from './WelcomePage';
-
+import UserChannelContainer from './UserChannelContainer';
+import UserChannelListContainer from './UserChannelListContainer';
 const cookies = new Cookies();
 
 const apiKey = 'qgtk9ttyha7j'; //TODO grab your new api key to connect
@@ -30,27 +31,25 @@ const LandingPage = ({navigateToWelcomePage}) => {
     const [isCreating, setIsCreating] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
 
-    if(!authToken){
-        // navigateToWelcomePage() 
-        //TODO we want to render a page that will says there are no current user that is logged in currently
-    }
+//TODO Need to create a function that will redirect us to welcome page if we are not logged in 
+//TODO just need to check if token exists
 
     return (
         <div className="app__wrapper">
-            <Chat client={client} theme="team light">
-                {/* <ChannelListContainer 
+            <Chat client={client}>
+                <UserChannelListContainer 
                     isCreating={isCreating}
                     setIsCreating={setIsCreating}
                     setCreateType={setCreateType}
                     setIsEditing={setIsEditing}
                 />
-                <ChannelContainer 
+                <UserChannelContainer 
                     isCreating={isCreating}
                     setIsCreating={setIsCreating}
                     isEditing={isEditing}
                     setIsEditing={setIsEditing}
                     createType={createType}
-                /> */}
+                />
             </Chat>
         </div>
     );
