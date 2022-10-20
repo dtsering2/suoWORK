@@ -33,6 +33,22 @@ const UserChannelListContainer = () => {
                         />
                     )}
                 />
+                <ChannelList
+                    filters = {{}}
+                    channelRenderFilterFn = {()=>{}}
+                    List = {(listProps)=>(
+                        <UserTeamChannelList 
+                            {...listProps}
+                            type = 'messaging'
+                        />
+                    )}
+                    Preview = {(previewProps)=>(
+                        <UserTeamChannelPreview 
+                            {...previewProps}
+                            type = "messaging"
+                        />
+                    )}
+                />
             </div>
         </>
     )
