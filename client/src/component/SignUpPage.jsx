@@ -4,6 +4,7 @@ import Cookies from 'universal-cookie';
 
 export default function SignUpPage ({navigateToLoginPage}) {
     const cookies = new Cookies();
+
     const initialStateSignUpCredentials = {
         fullName: '',
         username: '',
@@ -21,8 +22,23 @@ export default function SignUpPage ({navigateToLoginPage}) {
     }
 
     const handleSignUpSubmit = async (e) =>{
+        e.preventDefault()
+        const { fullName, username, password, phoneNumber, avatarURL} = signUpCredentials
+        const URL = 'http://http://localhost:8000/' ;
 
+        const { data: {token, userId, hashedPassword} } = await axios.post(`${URL}/signup`, {
+            username, password, fullName, phoneNumber, avatarURL
+        })
 
+        cookies.set('token', token);
+        cookies.set('username', token);
+        cookies.set('fullName', token);
+        cookies.set('userId', userId);
+        cookies.set('phoneNumber', phoneNumber);
+        cookies.set('avatarURL', avatarURL)
+        cookies.set('hashedPassword', hashedPassword);
+
+        window.location.reload();
     }
 
     return(

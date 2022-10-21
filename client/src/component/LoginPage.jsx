@@ -3,6 +3,7 @@ import axios from 'axios';
 import Cookies from 'universal-cookie';
 
 export default function LoginPage () {
+    const cookies = new Cookies()
     const initialStateLoginCredentials = {
         username: '',
         password: ''
@@ -13,8 +14,21 @@ export default function LoginPage () {
         setLoginCredentials({...loginCredentials, [e.target.name]: e.target.value});
         console.log(loginCredentials)
     }
-    const handleLoginSubmit = (e) =>{
+    const handleLoginSubmit = async (e) =>{
+        e.preventDefault()
+        const { fullName, username, password, phoneNumber, avatarURL} = signUpCredentials
+        const URL = 'http://http://localhost:8000/' ;
 
+        const { data: {token, userId, hashedPassword} } = await axios.post(`${URL}/login`, {
+            username, password, fullName, phoneNumber, avatarURL
+        })
+
+        cookies.set('token', token);
+        cookies.set('username', token);
+        cookies.set('fullName', token);
+        cookies.set('userId', userId);
+
+        window.location.reload();
     }
     return(
         <div className = "auth__form-container">
